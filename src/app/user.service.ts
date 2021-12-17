@@ -8,4 +8,6 @@ export class UserService {
   constructor() { }
 
   users : any = [];
+  
+  table : any = {};
 }

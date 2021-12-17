@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { UserService } from '../user.service';
 import { UserModule } from '../shared/user.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ export class LoginComponent implements OnInit {
    'user' = UserModule
   @ViewChild('loginForm',{read : NgForm}) form : any; 
 
-  constructor(public loginUser:UserService) { }
+  constructor(public loginUser:UserService , private r:Router) { }
   loginSuccess: any;
   
   ngOnInit(): void {
@@ -24,23 +25,24 @@ export class LoginComponent implements OnInit {
     this.loginSuccess = false; 
     
     
-    for(var i=0;i<this.loginUser.users.length;i++){
-         console.log(this.form.value.Email)
-      if(loginForm.value.Email == this.loginUser.users[i].email && loginForm.value.password == this.loginUser.users[i].password){
-        
-        this.loginSuccess = true;
-      }              
-    
-      }
+   for(var i=0;i<this.loginUser.users.length;i++){
+     if(this.form.value.Email == this.loginUser.users[i].email ){        
+       this.loginSuccess = true;} 
+       if(loginForm.value.password == this.loginUser.users[i].password) {
+         this.loginSuccess = true;
+         this.loginUser.table = this.loginUser.users[i];
+         console.log(this.loginUser.table)
+       }              
+   }
       
 
-        if (this.loginSuccess){
-        alert("Login Successfully")
+   if (this.loginSuccess){
+     alert("Login Successfully")
+     this.r.navigateByUrl("home")
         
-      }else alert("Account not register")
-
-    loginForm.reset()
-  }
+   }else alert("Account not register")
+     loginForm.reset()
+}
  
   
 

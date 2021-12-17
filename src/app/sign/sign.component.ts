@@ -45,8 +45,7 @@ export class SignComponent implements OnInit {
   onSubmit(myForm:NgForm){  
         console.log(myForm.value)
         this.userService.users.push(myForm.value);
-       console.log(this.userService.users)
-       console.log(this.form.controls)
+        console.log(this.userService.users)
        if(this.form.controls.email.status == 'INVALID'){
          this.inname.push("email")
          console.log(this.inname)

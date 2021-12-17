@@ -9,14 +9,15 @@ import { UserService } from '../user.service';
 export class HomeComponent implements OnInit {
   
   
-  constructor(public homeService:UserService) { 
-    for(var i=0;i<this.homeService.users.length; i++)
-      console.log(this.homeService.users[i].email)
+  constructor(private homeService:UserService) { 
 
   }
+  home:any = this.homeService.users
+  
+
 
   ngOnInit(): void {
   }
-
+  
 
 }
