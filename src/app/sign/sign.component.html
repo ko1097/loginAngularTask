@@ -1,0 +1,67 @@
+<div>
+    <form #registerForm ='ngForm' (ngSubmit)='onSubmit(registerForm)'>
+        <input  name="firstName" type="text" #FirstName = 'ngModel' required minlength="3" [(ngModel)]='user.FirstName' placeholder="First-Name" required> <br> <br>
+        <div *ngIf="FirstName.invalid && (FirstName.dirty || FirstName.touched)"
+             class="alert alert-danger">
+             <div *ngIf="FirstName.errors?.['required']">
+               First-Name is required.
+            </div>
+        
+            <div *ngIf="FirstName.errors?.['minlength']">
+                 First-Name must be 3 letters long.
+            </div>
+            
+        </div>
+        <input name= "lastname" type="text" #Lastname = 'ngModel' [(ngModel)]='user.LastName'placeholder="Last-Name" minlength="3" required><br><br>
+        <div *ngIf="Lastname.invalid && (Lastname.dirty || Lastname.touched)"
+             class="alert alert-danger">
+        
+            <div *ngIf="Lastname.errors?.['required']">
+               Last-Name is required.
+            </div>
+            <div *ngIf="Lastname.errors?.['minlength']">
+               Last-Name must be 3 letters long .
+            </div>
+        </div>
+
+        <input name="email" type="email" #Email = 'ngModel' [(ngModel)]='user.Email' placeholder="Email" 
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required > <br><br>
+        <div *ngIf="Email.invalid && (Email.dirty || Email.touched)"
+             class="alert alert-danger">
+        
+            <div *ngIf="Email.errors?.['required']">
+               Email is required.
+            </div>
+            <div *ngIf="Email.errors?.['pattern']">
+               Enter the Email in correct Email address
+            </div>
+        </div>
+
+        <input name="Password" type="password" #Password = 'ngModel' [(ngModel)] = 'user.Password' minlength="5" placeholder="Password" required> <br><br>
+        <div *ngIf="Password.invalid && (Password.dirty || Password.touched)"
+          class="alert alert-danger">
+           <div *ngIf="Password.errors?.['required']">
+              Password is required.
+           </div>
+   
+           <div *ngIf="Password.errors?.['minlength']">
+             Password must at least 5 Letter long..
+           </div>
+        </div>
+        <input type="text" name = "MobileNumber" #MobileNumber = "ngModel" [(ngModel)]="user.Mobile" placeholder="MobileNumber" pattern="[0-9]{10}" required maxlength="10" ><br><br>
+         <div *ngIf="MobileNumber.invalid && (MobileNumber.dirty || MobileNumber.touched)"
+             class="alert alert-danger">
+        
+            <div *ngIf="MobileNumber.errors?.['required']">
+               Mobile is required.
+            </div>
+            <div *ngIf="MobileNumber.errors?.['pattern']">
+               Enter the Correct Mobile Number.
+            </div>
+        </div>
+        <button >Submit</button>
+    </form>
+</div>
+
+
+
